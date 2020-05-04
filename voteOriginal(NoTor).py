@@ -5,7 +5,7 @@ requests.packages.urllib3.disable_warnings()
 # Created by Alex Beals
 # Last updated: February 20, 2016
 
-base_url = "https://polldaddy.com/poll/"
+base_url = "https://poll.fm/"
 redirect = ""
 
 useragents = []
@@ -60,7 +60,7 @@ def vote_once(form, value):
     # Search for the hidden form value
     pz = re.search("type='hidden' name='pz' value='(.*?)'",init.text).group(1)
     # Build the GET url to vote
-    request = "https://polldaddy.com/vote.php?va=" + str(data['at']) + "&pt=0&r=0&p=" + str(form) + "&a=" + str(value) + "%2C&o=&t=" + str(data['t']) + "&token=" + str(data['n']) + "&pz=" + str(pz)
+    request = "https://poll.fm/vote.php?va=" + str(data['at']) + "&pt=0&r=0&p=" + str(form) + "&a=" + str(value) + "%2C&o=&t=" + str(data['t']) + "&token=" + str(data['n']) + "&pz=" + str(pz)
     try:
         send = c.get(request, headers=redirect, verify=False, proxies=current_proxy)
     except:
@@ -81,7 +81,7 @@ def vote(form, value, times, wait_min = None, wait_max = None):
             if wait_min and wait_max:
                 seconds = random.randint(wait_min, wait_max)
             else:
-                seconds = 3
+                seconds = 0
 
             print("Voted (time number " + str(i) + ")!")
             time.sleep(seconds)
@@ -91,9 +91,9 @@ def vote(form, value, times, wait_min = None, wait_max = None):
             time.sleep(60)
 
 # Initialize these to the specific form and how often you want to vote
-poll_id = 9776576
-answer_id = 44718992
-number_of_votes = 500
+poll_id = 10546127
+answer_id = 48821809
+number_of_votes = 10000
 wait_min = None
 wait_max = None
 
